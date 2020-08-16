@@ -7,20 +7,10 @@ class ContractTestCase(unittest.TestCase):
     def setUp(self):
         self.contract_data = {
             "Coverage": [
-                {
-                    "Attribute": "Location",
-                    "Include": [
-                        "USA", "Canada"
-                    ]
-                },
-                {
-                    "Attribute": "Peril",
-                    "Exclude": [
-                        "Tornado"
-                    ]
-                }
+                {"Attribute": "Location", "Include": ["USA", "Canada"]},
+                {"Attribute": "Peril", "Exclude": ["Tornado"]},
             ],
-            "MaxAmount": 3000
+            "MaxAmount": 3000,
         }
 
     def test_initialize_correctly(self):

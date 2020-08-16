@@ -15,7 +15,7 @@ class InsuranceTestCase(unittest.TestCase):
         result = Insurance(
             contract_path="{}/data/contract.json".format(self.dir_path),
             deals_csv="{}/data/deals.csv".format(self.dir_path),
-            event_losses_csv="{}/data/losses.csv".format(self.dir_path)
+            event_losses_csv="{}/data/losses.csv".format(self.dir_path),
         )
         self.assertEqual(3000, result.contract.max_amount)
         self.assertEqual({"USA", "Canada"}, result.contract.location_include)
@@ -36,7 +36,7 @@ class InsuranceTestCase(unittest.TestCase):
         insurance = Insurance(
             contract_path="{}/data/contract.json".format(self.dir_path),
             deals_csv="{}/data/deals.csv".format(self.dir_path),
-            event_losses_csv="{}/data/losses.csv".format(self.dir_path)
+            event_losses_csv="{}/data/losses.csv".format(self.dir_path),
         )
         with patch("sys.stdout", new=io.StringIO()) as fake_out:
             insurance.print_covered_deals()
@@ -47,7 +47,7 @@ class InsuranceTestCase(unittest.TestCase):
         insurance = Insurance(
             contract_path="{}/data/contract.json".format(self.dir_path),
             deals_csv="{}/data/deals.csv".format(self.dir_path),
-            event_losses_csv="{}/data/losses.csv".format(self.dir_path)
+            event_losses_csv="{}/data/losses.csv".format(self.dir_path),
         )
         with patch("sys.stdout", new=io.StringIO()) as fake_out:
             insurance.print_losses_by_peril()

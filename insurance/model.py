@@ -64,7 +64,9 @@ class Insurance:
     def __init__(self, contract_path, deals_csv, event_losses_csv):
         self.contract = Contract(contract_data=json_from_file(contract_path))
         self.deals = self.covered_deals(deals_csv=deals_csv)
-        self.sum_losses_by_peril = self.reimbursement_losses_by_peril(event_losses_csv=event_losses_csv)
+        self.sum_losses_by_peril = self.reimbursement_losses_by_peril(
+            event_losses_csv=event_losses_csv
+        )
 
     def covered_deals(self, deals_csv):
         return {
@@ -90,7 +92,9 @@ class Insurance:
         print(tabulate(Deal.as_tuples(self.deals.values()), headers=Deal.HEADERS))
 
     def print_losses_by_peril(self):
-        print(tabulate(
-            sorted(self.sum_losses_by_peril.items(), key=lambda item: item[0]),
-            headers=("Peril", "Loss")
-        ))
+        print(
+            tabulate(
+                sorted(self.sum_losses_by_peril.items(), key=lambda item: item[0]),
+                headers=("Peril", "Loss"),
+            )
+        )

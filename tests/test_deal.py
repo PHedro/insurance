@@ -7,20 +7,10 @@ class DealTestCase(unittest.TestCase):
     def setUp(self):
         self.contract_data = {
             "Coverage": [
-                {
-                    "Attribute": "Location",
-                    "Include": [
-                        "USA", "Canada"
-                    ]
-                },
-                {
-                    "Attribute": "Peril",
-                    "Exclude": [
-                        "Tornado"
-                    ]
-                }
+                {"Attribute": "Location", "Include": ["USA", "Canada"]},
+                {"Attribute": "Peril", "Exclude": ["Tornado"]},
             ],
-            "MaxAmount": 3000
+            "MaxAmount": 3000,
         }
 
     def test_deal_initializes_correctly(self):
@@ -100,21 +90,12 @@ class DealTestCase(unittest.TestCase):
             "Coverage": [
                 {
                     "Attribute": "Location",
-                    "Include": [
-                        "USA", "Canada", "Mexico"
-                    ],
-                    "Exclude": [
-                        "Mexico"
-                    ]
+                    "Include": ["USA", "Canada", "Mexico"],
+                    "Exclude": ["Mexico"],
                 },
-                {
-                    "Attribute": "Peril",
-                    "Exclude": [
-                        "Tornado"
-                    ]
-                }
+                {"Attribute": "Peril", "Exclude": ["Tornado"]},
             ],
-            "MaxAmount": 3000
+            "MaxAmount": 3000,
         }
         contract = Contract(contract_data)
         deal = Deal(deal_id=1, company="ACME", peril="Hurricane", location="Mexico")
@@ -125,23 +106,10 @@ class DealTestCase(unittest.TestCase):
         # if value is set in both Include and Exclude lists, Include has priority
         contract_data = {
             "Coverage": [
-                {
-                    "Attribute": "Location",
-                    "Include": [
-                        "USA", "Canada"
-                    ],
-                },
-                {
-                    "Attribute": "Peril",
-                    "Exclude": [
-                        "Tornado"
-                    ],
-                    "Include": [
-                        "Tornado"
-                    ]
-                }
+                {"Attribute": "Location", "Include": ["USA", "Canada"],},
+                {"Attribute": "Peril", "Exclude": ["Tornado"], "Include": ["Tornado"]},
             ],
-            "MaxAmount": 3000
+            "MaxAmount": 3000,
         }
         contract = Contract(contract_data)
         deal = Deal(deal_id=1, company="ACME", peril="Tornado", location="Canada")

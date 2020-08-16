@@ -8,37 +8,43 @@ class LoadContractTestCase(unittest.TestCase):
     def setUp(self):
         self.expected = {
             "Coverage": [
-                {
-                    "Attribute": "Location",
-                    "Include": [
-                        "USA", "Canada"
-                    ]
-                },
-                {
-                    "Attribute": "Peril",
-                    "Exclude": [
-                        "Tornado"
-                    ]
-                }
+                {"Attribute": "Location", "Include": ["USA", "Canada"]},
+                {"Attribute": "Peril", "Exclude": ["Tornado"]},
             ],
-            "MaxAmount": 3000
+            "MaxAmount": 3000,
         }
         self.dir_path = os.path.dirname(os.path.realpath(__file__))
 
     def test_load_coverage_correctly(self):
         coverage_expected = self.expected.get("Coverage")
-        result = json_from_file(path="{}/data/contract.json".format(self.dir_path)).get("Coverage")
+        result = json_from_file(path="{}/data/contract.json".format(self.dir_path)).get(
+            "Coverage"
+        )
 
         for _index, item in enumerate(result):
-            self.assertEqual(coverage_expected[_index].get("Attribute"), item.get("Attribute"))
-            self.assertEqual(len(coverage_expected[_index].get("Include", [])), len(item.get("Include", [])))
-            self.assertEqual(coverage_expected[_index].get("Include"), item.get("Include"))
-            self.assertEqual(len(coverage_expected[_index].get("Exclude", [])), len(item.get("Exclude", [])))
-            self.assertEqual(coverage_expected[_index].get("Exclude"), item.get("Exclude"))
+            self.assertEqual(
+                coverage_expected[_index].get("Attribute"), item.get("Attribute")
+            )
+            self.assertEqual(
+                len(coverage_expected[_index].get("Include", [])),
+                len(item.get("Include", [])),
+            )
+            self.assertEqual(
+                coverage_expected[_index].get("Include"), item.get("Include")
+            )
+            self.assertEqual(
+                len(coverage_expected[_index].get("Exclude", [])),
+                len(item.get("Exclude", [])),
+            )
+            self.assertEqual(
+                coverage_expected[_index].get("Exclude"), item.get("Exclude")
+            )
 
     def test_load_max_amount_correctly(self):
         max_amount_expected = self.expected.get("MaxAmount")
-        result = json_from_file(path="{}/data/contract.json".format(self.dir_path)).get("MaxAmount")
+        result = json_from_file(path="{}/data/contract.json".format(self.dir_path)).get(
+            "MaxAmount"
+        )
 
         self.assertEqual(max_amount_expected, result)
 
@@ -54,7 +60,9 @@ class LoadCSVTestCase(unittest.TestCase):
         self.dir_path = os.path.dirname(os.path.realpath(__file__))
 
     def test_load_losses_header_correctly(self):
-        result_header = csv_from_file(path="{}/data/losses.csv".format(self.dir_path))[0]
+        result_header = csv_from_file(path="{}/data/losses.csv".format(self.dir_path))[
+            0
+        ]
         self.assertEqual(self.losses_header, result_header)
 
     def test_load_deals_header_correctly(self):

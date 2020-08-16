@@ -5,7 +5,7 @@ def check_insurance():
     insurance = Insurance(
         contract_path="tests/data/contract.json",
         deals_csv="tests/data/deals.csv",
-        event_losses_csv="tests/data/losses.csv"
+        event_losses_csv="tests/data/losses.csv",
     )
     insurance.print_covered_deals()
 
